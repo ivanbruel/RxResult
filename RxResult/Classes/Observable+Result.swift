@@ -40,7 +40,7 @@ extension ObservableType where E: ResultType {
     }
   }
 
-  func subscribeFailure(failure: (E.Value -> Void)) -> Disposable {
+  func subscribeFailure(failure: (E.Error -> Void)) -> Disposable {
     return subscribeNext { value in
       guard let failureValue = value.error else {
         return
