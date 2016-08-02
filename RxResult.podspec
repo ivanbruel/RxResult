@@ -27,7 +27,7 @@ and subscribeFailure methods.
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Ivan Bruel' => 'ivan.bruel@gmail.com' }
   s.source           = { :git => 'https://github.com/ivanbruel/RxResult.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.social_media_url = 'https://twitter.com/ivanbruel'
 
   s.ios.deployment_target = '8.0'
 
