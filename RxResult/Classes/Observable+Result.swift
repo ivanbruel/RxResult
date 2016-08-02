@@ -9,9 +9,9 @@ import Foundation
 import RxSwift
 import Result
 
-extension ObservableType where E: ResultType {
+public extension ObservableType where E: ResultType {
 
-  func doOnSuccess(onSuccess: (E.Value throws -> Void))
+  public func doOnSuccess(onSuccess: (E.Value throws -> Void))
     -> Observable<E> {
       return doOnNext { (value) in
         guard let successValue = value.value else {
@@ -21,7 +21,7 @@ extension ObservableType where E: ResultType {
       }
   }
 
-  func doOnFailure(onFailure: (E.Error throws -> Void))
+  public func doOnFailure(onFailure: (E.Error throws -> Void))
     -> Observable<E> {
       return doOnNext { (value) in
         guard let failureValue = value.error else {
@@ -31,7 +31,7 @@ extension ObservableType where E: ResultType {
       }
   }
 
-  func subscribeSuccess(success: (E.Value -> Void)) -> Disposable {
+  public func subscribeSuccess(success: (E.Value -> Void)) -> Disposable {
     return subscribeNext { value in
       guard let successValue = value.value else {
         return
@@ -40,7 +40,7 @@ extension ObservableType where E: ResultType {
     }
   }
 
-  func subscribeFailure(failure: (E.Error -> Void)) -> Disposable {
+  public func subscribeFailure(failure: (E.Error -> Void)) -> Disposable {
     return subscribeNext { value in
       guard let failureValue = value.error else {
         return
