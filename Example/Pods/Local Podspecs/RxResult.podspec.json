@@ -1,0 +1,22 @@
+{
+  "name": "RxResult",
+  "version": "0.1.0",
+  "summary": "A short description of RxResult.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/<GITHUB_USERNAME>/RxResult",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Ivan Bruel": "ivan.bruel@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/<GITHUB_USERNAME>/RxResult.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "RxResult/Classes/**/*"
+}

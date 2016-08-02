@@ -1,0 +1,16 @@
+PODS:
+  - RxResult (0.1.0)
+
+DEPENDENCIES:
+  - RxResult (from `../`)
+
+EXTERNAL SOURCES:
+  RxResult:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  RxResult: 8c9e3010e8b8e2311b875a7acaca17f19a04bcc3
+
+PODFILE CHECKSUM: 4c9fe8fe084aba98c80179cb9ae788b4e92711df
+
+COCOAPODS: 1.0.1
