@@ -51,7 +51,7 @@ public extension ObservableType where E: ResultProtocol {
         onSuccess?(successValue)
       } else if let errorValue = value.error {
         onFailure?(errorValue)
-      })
-    }
+      }
+    })
   }
 }
