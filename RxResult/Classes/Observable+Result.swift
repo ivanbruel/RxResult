@@ -45,13 +45,13 @@ public extension ObservableType where E: ResultProtocol {
 
   public func subscribeResult(onSuccess: ((Self.E.Value) -> Void)? = nil,
                               onFailure: ((Self.E.Error) -> Void)? = nil) -> Disposable {
-    return subscribeNext { value in
+    return subscribe(onNext: { value in
 
       if let successValue = value.value {
         onSuccess?(successValue)
       } else if let errorValue = value.error {
         onFailure?(errorValue)
-      }
+      })
     }
   }
 }
