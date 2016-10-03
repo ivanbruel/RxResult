@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'RxResult'
-  s.version          = '2.0'
+  s.version          = '2.0.1'
   s.summary          = 'Result bindings for RxSwift'
 
 # This description is used to generate tags and improve search results.
