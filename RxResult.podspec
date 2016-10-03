@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'RxResult'
-  s.version          = '1.0.2'
+  s.version          = '2.0'
   s.summary          = 'Result bindings for RxSwift'
 
 # This description is used to generate tags and improve search results.
@@ -33,6 +33,6 @@ and subscribeFailure methods.
 
   s.source_files = 'RxResult/Classes/**/*'
 
-  s.dependency 'RxSwift', '~> 2.6'
-  s.dependency 'Result', '~> 2.1.3'
+  s.dependency 'RxSwift', '3.0.0-beta.1'
+  s.dependency 'Result'
 end

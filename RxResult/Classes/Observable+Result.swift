@@ -9,43 +9,49 @@ import Foundation
 import RxSwift
 import Result
 
-public extension ObservableType where E: ResultType {
+public protocol RxResultError: Error {
+  static func failure(from error: Error) -> Self
+}
 
-  public func doOnSuccess(onSuccess: (E.Value throws -> Void))
+public extension ObservableType {
+  
+  public func mapResult<U: RxResultError>(_ errorType: U.Type) -> Observable<Result<E, U>> {
+    return self.map(Result<E, U>.success)
+      .catchError{ .just(Result.failure(U.failure(from: $0))) }
+    }
+}
+
+public extension ObservableType where E: ResultProtocol {
+
+  public func `do`(onSuccess: (@escaping (Self.E.Value) throws -> Void))
     -> Observable<E> {
-      return doOnNext { (value) in
+      return `do`(onNext: { (value) in
         guard let successValue = value.value else {
           return
         }
         try onSuccess(successValue)
-      }
+      })
   }
 
-  public func doOnFailure(onFailure: (E.Error throws -> Void))
+  public func `do`(onFailure: (@escaping (Self.E.Error) throws -> Void))
     -> Observable<E> {
-      return doOnNext { (value) in
+      return `do`(onNext: { (value) in
         guard let failureValue = value.error else {
           return
         }
         try onFailure(failureValue)
-      }
+      })
   }
 
-  public func subscribeSuccess(success: (E.Value -> Void)) -> Disposable {
+  public func subscribeResult(onSuccess: ((Self.E.Value) -> Void)? = nil,
+                              onFailure: ((Self.E.Error) -> Void)? = nil) -> Disposable {
     return subscribeNext { value in
-      guard let successValue = value.value else {
-        return
-      }
-      success(successValue)
-    }
-  }
 
-  public func subscribeFailure(failure: (E.Error -> Void)) -> Disposable {
-    return subscribeNext { value in
-      guard let failureValue = value.error else {
-        return
+      if let successValue = value.value {
+        onSuccess?(successValue)
+      } else if let errorValue = value.error {
+        onFailure?(errorValue)
       }
-      failure(failureValue)
     }
   }
 }

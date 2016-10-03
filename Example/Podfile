@@ -1,6 +1,4 @@
 use_frameworks!
-target 'RxResult_Tests' do
+target 'RxResult_Example' do
   pod 'RxResult', :path => '../'
-  
-  
 end
