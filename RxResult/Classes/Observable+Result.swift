@@ -17,7 +17,11 @@ public extension ObservableType {
   
   public func mapResult<U: RxResultError>(_ errorType: U.Type) -> Observable<Result<E, U>> {
     return self.map(Result<E, U>.success)
-      .catchError{ .just(Result.failure(U.failure(from: $0))) }
+      .catchError{ error in
+        if let error = error as? U {
+            return .just(Result.failure(error))
+        }
+        return .just(Result.failure(U.failure(from: error))) }
     }
 }
 
