@@ -33,6 +33,6 @@ and subscribeFailure methods.
 
   s.source_files = 'RxResult/Classes/**/*'
 
-  s.dependency 'RxSwift', '3.1.0'
+  s.dependency 'RxSwift', '~> 3.3'
   s.dependency 'Result'
 end
