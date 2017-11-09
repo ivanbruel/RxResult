@@ -46,11 +46,21 @@ public extension ObservableType where E: ResultProtocol {
         try onFailure(failureValue)
       })
   }
+  
+  public func `do`(onSuccess: (@escaping (Self.E.Value) throws -> Void)?, onFailure: (@escaping (Self.E.Error) throws -> Void)?)
+    -> Observable<E> {
+      return `do`(onNext: { (value) in
+        if let successValue = value.value {
+          try onSuccess?(successValue)
+        } else if let errorValue = value.error {
+          try onFailure?(errorValue)
+      }
+      })
+  }
 
   public func subscribeResult(onSuccess: ((Self.E.Value) -> Void)? = nil,
                               onFailure: ((Self.E.Error) -> Void)? = nil) -> Disposable {
     return subscribe(onNext: { value in
-
       if let successValue = value.value {
         onSuccess?(successValue)
       } else if let errorValue = value.error {
