@@ -14,7 +14,7 @@ public protocol RxResultError: Error {
 }
 
 public extension ObservableType {
-  
+
   public func mapResult<U: RxResultError>(_ errorType: U.Type) -> Observable<Result<E, U>> {
     return self.map(Result<E, U>.success)
       .catchError{ error in
@@ -46,8 +46,8 @@ public extension ObservableType where E: ResultProtocol {
         try onFailure(failureValue)
       })
   }
-  
-  public func `do`(onSuccess: (@escaping (Self.E.Value) throws -> Void)?, onFailure: (@escaping (Self.E.Error) throws -> Void)?)
+
+  public func `do`(onSuccess: ((Self.E.Value) throws -> Void)?, onFailure: ((Self.E.Error) throws -> Void)?)
     -> Observable<E> {
       return `do`(onNext: { (value) in
         if let successValue = value.value {
